@@ -1,5 +1,5 @@
 import { Dimensions, FlatList, View } from 'react-native';
-import { useGetPokemonList } from '../modals';
+import { useGetPokemonList, usePermsistVisitedPokemon } from '../modals';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
 import { Spinner } from '@/components/ui/spinner';
@@ -12,7 +12,12 @@ const COLUMN_COUNT = 6;
 export function PokemonList() {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
+  const { checkIfVisited, savePokemonVisited } = usePermsistVisitedPokemon();
 
+  function handleVisitPokemon(pokemon: Pokemon) {
+    setShowPokemon(pokemon);
+    savePokemonVisited(pokemon.id);
+  }
   return (
     <>
       <FlatList
@@ -24,8 +29,8 @@ export function PokemonList() {
             <PokemonCard
               key={item.id.toString()}
               pokemon={item}
-              onPress={() => setShowPokemon(item)}
-              visited={index % 2 === 0}
+              onPress={() => handleVisitPokemon(item)}
+              visited={checkIfVisited(item.id)}
             />
           </Box>
         )}
