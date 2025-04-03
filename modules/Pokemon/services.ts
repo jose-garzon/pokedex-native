@@ -20,6 +20,7 @@ export async function fetchPokemon(name: string): Promise<Pokemon> {
     })),
     types: data.types.map(type => type.type.name),
     weight: data.weight,
+    height: data.height * 10,
   };
 }
 
