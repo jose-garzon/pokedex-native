@@ -13,7 +13,11 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
   const visitedClass = visited ? 'opacity-100 bg-slate-700' : 'opacity-50';
   return (
     <Pressable className="p-1" onPress={onPress}>
-      <Box className={`p-2 h-full aspect-square justify-between rounded-md ${visitedClass}`}>
+      <Box
+        aria-label={`${pokemon.name} card`}
+        aria-selected={visited}
+        className={`p-2 h-full aspect-square justify-between rounded-md ${visitedClass}`}
+      >
         <Image
           source={{ uri: pokemon.baseImage }}
           alt={pokemon.name}

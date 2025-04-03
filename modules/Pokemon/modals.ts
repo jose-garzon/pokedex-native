@@ -30,7 +30,7 @@ export function useGetPokemon(name: string): {
   error: unknown;
 } {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['pokemon'],
+    queryKey: ['pokemon', name],
     queryFn: () => fetchPokemon(name),
     enabled: Boolean(name),
   });
