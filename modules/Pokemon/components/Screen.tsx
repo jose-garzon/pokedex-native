@@ -22,6 +22,7 @@ import { Stat } from './Stat';
 import { FlatList } from 'react-native-reanimated/lib/typescript/Animated';
 import { VStack } from '@/components/ui/vstack';
 import { TypeBadge } from './TypeBadge';
+import { Divider } from '@/components/ui/divider';
 
 interface ScreenProps {
   pokemon: Pokemon | null;
@@ -39,20 +40,20 @@ export function Screen({ pokemon, isOpen, onClose }: ScreenProps) {
         </ActionsheetDragIndicatorWrapper>
         {pokemon && (
           <Center className="p-2 w-full">
-            <Heading className="pb-5 text-center capitalize">{pokemon.name}</Heading>
+            <Heading className="pb-3 text-4xl text-center uppercase">{pokemon.name}</Heading>
             <Image
               source={{ uri: pokemon.artImage }}
               alt={pokemon.name}
-              className="aspect-square h-60 w-60"
+              className="aspect-square h-72 w-72 my-2"
             />
             <HStack space="md">
               {pokemon.types.map(type => (
                 <TypeBadge key={type} type={type} />
               ))}
             </HStack>
-            <HStack space="md">
-              <Text className="text-lg">Exp: {pokemon.experience}</Text>
+            <HStack space="md" className="my-4">
               <Text className="text-lg">Height: {pokemon.height} cm</Text>
+              <Divider orientation="vertical" />
               <Text className="text-lg">Weight: {pokemon.weight} kg</Text>
             </HStack>
             <HStack className=" w-full">

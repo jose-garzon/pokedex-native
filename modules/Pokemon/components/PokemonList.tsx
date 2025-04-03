@@ -1,4 +1,4 @@
-import { Dimensions, FlatList } from 'react-native';
+import { Dimensions, FlatList, View } from 'react-native';
 import { useGetPokemonList } from '../modals';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Pokemon } from '../types';
 import { Screen } from './Screen';
 
-const COLUMN_COUNT = 4;
+const COLUMN_COUNT = 6;
 
 export function PokemonList() {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
@@ -17,18 +17,15 @@ export function PokemonList() {
     <>
       <FlatList
         data={pokeList}
-        className="my-5"
+        className="mt-5"
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => (
-          <Box
-            className={`flex-1 ${
-              Dimensions.get('window').width < 640 ? 'w-1/2' : 'w-1/3'
-            } aspect-square`}
-          >
+        renderItem={({ item, index }) => (
+          <Box className={`flex-1 aspect-square`}>
             <PokemonCard
               key={item.id.toString()}
               pokemon={item}
               onPress={() => setShowPokemon(item)}
+              visited={index % 2 === 0}
             />
           </Box>
         )}

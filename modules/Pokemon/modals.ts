@@ -32,6 +32,7 @@ export function useGetPokemon(name: string): {
   const { data, isLoading, error } = useQuery({
     queryKey: ['pokemon'],
     queryFn: () => fetchPokemon(name),
+    enabled: Boolean(name),
   });
   return { data, isLoading, error };
 }

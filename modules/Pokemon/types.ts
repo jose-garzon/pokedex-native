@@ -8,6 +8,11 @@ export interface Sprites {
     dream_world: { front_default: string };
     'official-artwork': { front_default: string };
   };
+  versions: {
+    'generation-vi': {
+      'omegaruby-alphasapphire': { front_default: string };
+    };
+  };
 }
 export interface PokemonResponse {
   id: number;

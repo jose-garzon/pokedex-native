@@ -3,7 +3,6 @@ import { getTypeColor } from './utils';
 
 export function TypeBadge({ type }: { type: string }) {
   const { background, color } = getTypeColor(type);
-  console.log({ background });
   return (
     <Text
       style={{ backgroundColor: background, color }}

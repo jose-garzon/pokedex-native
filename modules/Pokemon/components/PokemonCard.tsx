@@ -1,5 +1,4 @@
 import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
 import { Pokemon } from '../types';
 import { Image } from '@/components/ui/image';
 import { Pressable } from '@/components/ui/pressable';
@@ -7,22 +6,20 @@ import { Pressable } from '@/components/ui/pressable';
 interface PokemonCardProps {
   pokemon: Pokemon;
   onPress: () => void;
+  visited: boolean;
 }
 
-export function PokemonCard({ pokemon, onPress }: PokemonCardProps) {
+export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
+  const visitedClass = visited ? 'opacity-100 bg-slate-700' : 'opacity-50';
   return (
-    <>
-      <Pressable className="p-2 h-full aspect-square" onPress={onPress}>
-        <Box className="flex relative items-center h-full">
-          <Text className="absolute bottom-0 left-0 text-5xl">{pokemon.id}</Text>
-          <Image
-            source={{ uri: pokemon.baseImage }}
-            alt={pokemon.name}
-            className="aspect-square h-full w-full object-fill"
-          />
-        </Box>
-        <Text className="font-bold capitalize">{pokemon.name}</Text>
-      </Pressable>
-    </>
+    <Pressable className="p-1" onPress={onPress}>
+      <Box className={`p-2 h-full aspect-square justify-between rounded-md ${visitedClass}`}>
+        <Image
+          source={{ uri: pokemon.baseImage }}
+          alt={pokemon.name}
+          className="aspect-square w-full h-full object-contain"
+        />
+      </Box>
+    </Pressable>
   );
 }
