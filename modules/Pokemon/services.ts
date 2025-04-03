@@ -2,7 +2,7 @@ import { PokeList, PokeListResponse, Pokemon, PokemonResponse } from './types';
 
 const PAGE_LIMIT = 10;
 
-async function fetchPokemonListData(name: string): Promise<Pokemon> {
+export async function fetchPokemon(name: string): Promise<Pokemon> {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   if (!response.ok) {
     throw new Error('Failed to fetch Pokemon');
@@ -33,7 +33,7 @@ export async function fetchPokeList(offset: number): Promise<PokeList> {
   const nextOffset = data.next ? Number(new URL(data.next).searchParams.get('offset')) : null;
   const results = data.results;
   const resultsDetails = results.map(async (result: { name: string }) => {
-    return fetchPokemonListData(result.name);
+    return fetchPokemon(result.name);
   });
   const pokemonList = await Promise.all(resultsDetails);
   return { next: nextOffset, results: pokemonList };
