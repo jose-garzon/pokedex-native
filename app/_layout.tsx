@@ -54,7 +54,7 @@ function RootLayoutNav() {
       persistOptions={{ persister: asyncStoragePersister }}
     >
       <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <ThemeProvider value={DarkTheme}>
           <Slot />
         </ThemeProvider>
       </GluestackUIProvider>

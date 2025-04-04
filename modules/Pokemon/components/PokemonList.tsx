@@ -13,6 +13,7 @@ const COLUMN_COUNT = 6;
 export function PokemonList() {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
+  console.log(pokeList);
   const { checkIfVisited } = usePermsistVisitedPokemon();
 
   return (

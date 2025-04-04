@@ -13,9 +13,6 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
-  "jest": {
-    "preset": "jest-expo"
-  },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
     "@expo/vector-icons": "^14.0.2",
@@ -99,6 +96,7 @@
     "jest-expo": "~52.0.3",
     "jscodeshift": "^0.15.2",
     "prettier": "^3.5.3",
+    "react-test-renderer": "^18.3.1",
     "typescript": "^5.3.3"
   },
   "private": true
