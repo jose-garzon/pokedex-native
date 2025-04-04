@@ -11,6 +11,7 @@ import { Text } from '@/components/ui/text';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { ErrorMessage } from './components/ErrorMessage';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
@@ -21,11 +22,11 @@ export function PokeListScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-black">
       <Box className="p-4 flex-1">
-        <Heading className="text-6xl text-typography-300">Pokedex</Heading>
-        <Text className="text-xl text-typography-300">Gotta catch 'em all</Text>
-        <Text className="text-lg text-typography-300 mt-10 mb-4">
+        <Heading className="text-6xl text-white">Pokedex</Heading>
+        <Text className="text-xl text-white">Gotta catch 'em all</Text>
+        <Text className="text-lg text-white mt-10 mb-4">
           Find your favorite pokemons and see their details.
         </Text>
         <Input size="xl" variant="rounded" className="mb-4">
@@ -37,7 +38,7 @@ export function PokeListScreen() {
             message="Change the name or pokedex number and try again."
           />
         )}
-        {isLoading && <Spinner size="large" color="black" />}
+        {isLoading && <Spinner size="large" color="white" />}
         {foundPokemon && (
           <Animated.View
             entering={FadeIn.duration(400)}
@@ -49,6 +50,7 @@ export function PokeListScreen() {
         )}
         {!search && !isLoading && !error && <PokemonList />}
       </Box>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }

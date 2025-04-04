@@ -1,20 +1,33 @@
-import { Dimensions, FlatList } from 'react-native';
+import { Dimensions, FlatList, useWindowDimensions } from 'react-native';
 import { useGetPokemonList, usePermsistVisitedPokemon } from '../adapters';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
 import { Spinner } from '@/components/ui/spinner';
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pokemon } from '../types';
 import { PokemonModal } from './PokemonModal';
 import { ErrorMessage } from './ErrorMessage';
 
-const COLUMN_COUNT = 6;
-
 export function PokemonList() {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
-  console.log(pokeList);
   const { checkIfVisited } = usePermsistVisitedPokemon();
+  const [itemHeight, setItemHeight] = useState<number>(118);
+  const { width, height } = useWindowDimensions();
+
+  const columnCount = useMemo(() => {
+    if (width >= 1024) return 6;
+    if (width >= 768) return 4;
+    return 3;
+  }, [width]);
+
+  const minItemsToShow = Math.ceil(height / itemHeight);
+  useEffect(() => {
+    const listLength = pokeList?.length ?? 0;
+    if (listLength < minItemsToShow) {
+      getNextPage();
+    }
+  }, [pokeList]);
 
   return (
     <>
@@ -27,7 +40,15 @@ export function PokemonList() {
           className="mt-5"
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Box className={`flex-1 aspect-square`} role="listitem">
+            <Box
+              className={`flex-1 aspect-square`}
+              role="listitem"
+              onLayout={event => {
+                if (item.id !== 1) return;
+                const { height } = event.nativeEvent.layout;
+                setItemHeight(height);
+              }}
+            >
               <PokemonCard
                 key={item.id.toString()}
                 pokemon={item}
@@ -37,15 +58,15 @@ export function PokemonList() {
             </Box>
           )}
           onEndReached={getNextPage}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={1}
           ListFooterComponent={
             isLoading ? (
               <Box className="py-4 items-center mt-2.5 w-full">
-                <Spinner size="large" color="#000" />
+                <Spinner size="large" color="white" />
               </Box>
             ) : null
           }
-          numColumns={Dimensions.get('window').width < 640 ? 3 : COLUMN_COUNT}
+          numColumns={columnCount}
         />
       )}
       <PokemonModal
