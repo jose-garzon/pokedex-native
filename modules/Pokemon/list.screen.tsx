@@ -8,6 +8,7 @@ import useDebounce from '@/hooks/useDebounce';
 import { PokemonDetails } from './components/PokemonDetails';
 import { Spinner } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
@@ -29,7 +30,15 @@ export function PokeListScreen() {
         <InputField onChangeText={handleInputChange} placeholder="Name or pokedex number..." />
       </Input>
       {isLoading && <Spinner size="large" color="#fff" />}
-      {foundPokemon && <PokemonDetails pokemon={foundPokemon} />}
+      {foundPokemon && (
+        <Animated.View
+          entering={FadeIn.duration(400)}
+          exiting={FadeOut.duration(300)}
+          style={{ width: '100%' }}
+        >
+          <PokemonDetails pokemon={foundPokemon} />
+        </Animated.View>
+      )}
       {!foundPokemon && !isLoading && <PokemonList />}
     </Box>
   );

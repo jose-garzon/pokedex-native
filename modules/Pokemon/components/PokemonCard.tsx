@@ -2,8 +2,15 @@ import { Box } from '@/components/ui/box';
 import { Pokemon } from '../types';
 import { Image } from '@/components/ui/image';
 import { Pressable } from '@/components/ui/pressable';
-import { useRef, useEffect } from 'react';
-import { Animated, Easing, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSpring,
+  Easing as ReanimatedEasing,
+} from 'react-native-reanimated';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -12,34 +19,38 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
-  const scaleAnim = useRef(new Animated.Value(1)).current;
-  const opacityAnim = useRef(new Animated.Value(visited ? 1 : 0.5)).current;
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(visited ? 1 : 0.5);
 
   useEffect(() => {
-    Animated.timing(opacityAnim, {
-      toValue: visited ? 1 : 0.5,
+    opacity.value = withTiming(visited ? 1 : 0.5, {
       duration: 300,
-      useNativeDriver: true,
-    }).start();
-  }, [visited, opacityAnim]);
+    });
+  }, [visited, opacity]);
 
   const handlePressIn = () => {
-    Animated.timing(scaleAnim, {
-      toValue: 0.9,
+    scale.value = withTiming(0.9, {
       duration: 150,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+      easing: ReanimatedEasing.out(ReanimatedEasing.cubic),
+    });
   };
 
   const handlePressOut = () => {
-    Animated.spring(scaleAnim, {
-      toValue: 1,
-      friction: 4,
-      tension: 40,
-      useNativeDriver: true,
-    }).start();
+    scale.value = withSpring(1, {
+      damping: 10,
+      stiffness: 100,
+    });
   };
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+      flex: 1,
+      height: '100%',
+      width: '100%',
+    };
+  });
 
   return (
     <Pressable
@@ -49,15 +60,7 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
       onPressOut={handlePressOut}
       style={styles.pressableContainer}
     >
-      <Animated.View
-        style={[
-          styles.animatedContainer,
-          {
-            transform: [{ scale: scaleAnim }],
-            opacity: opacityAnim,
-          }
-        ]}
-      >
+      <Animated.View style={animatedStyles}>
         <Box
           aria-label={`${pokemon.name} card`}
           aria-selected={visited}
@@ -80,9 +83,4 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-  animatedContainer: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  }
 });
