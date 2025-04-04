@@ -9,12 +9,12 @@ import { PokemonDetails } from './components/PokemonDetails';
 import { Spinner } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { ErrorMessage } from './components/ErrorMessage';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
-  const { data: foundPokemon, isLoading } = useGetPokemon(debouncedSearch);
-
+  const { data: foundPokemon, isLoading, error } = useGetPokemon(debouncedSearch);
   const handleInputChange = (text: string) => {
     setSearch(text);
   };
@@ -29,7 +29,13 @@ export function PokeListScreen() {
       <Input size="xl" variant="rounded" className="mb-4">
         <InputField onChangeText={handleInputChange} placeholder="Name or pokedex number..." />
       </Input>
-      {isLoading && <Spinner size="large" color="#fff" />}
+      {Boolean(error) && (
+        <ErrorMessage
+          title="Pokemon not found"
+          message="Change the name or pokedex number and try again."
+        />
+      )}
+      {isLoading && <Spinner size="large" color="black" />}
       {foundPokemon && (
         <Animated.View
           entering={FadeIn.duration(400)}
@@ -39,7 +45,7 @@ export function PokeListScreen() {
           <PokemonDetails pokemon={foundPokemon} />
         </Animated.View>
       )}
-      {!foundPokemon && !isLoading && <PokemonList />}
+      {!search && !isLoading && !error && <PokemonList />}
     </Box>
   );
 }

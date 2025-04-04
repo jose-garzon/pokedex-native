@@ -63,11 +63,11 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
       <Animated.View style={animatedStyles}>
         <Box
           aria-label={`${pokemon.name} card`}
-          aria-selected={visited}
           className={`p-2 h-full w-full aspect-square justify-between rounded-md ${visited ? 'bg-background-50' : 'bg-background-800'}`}
         >
           <Image
             source={{ uri: pokemon.baseImage }}
+            aria-selected={visited}
             alt={pokemon.name}
             className="aspect-square w-full h-full object-contain"
           />
