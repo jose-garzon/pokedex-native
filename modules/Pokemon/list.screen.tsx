@@ -7,6 +7,7 @@ import { useGetPokemon } from './modals';
 import useDebounce from '@/hooks/useDebounce';
 import { PokemonDetails } from './components/PokemonDetails';
 import { Spinner } from '@/components/ui/spinner';
+import { Text } from '@/components/ui/text';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
@@ -18,11 +19,14 @@ export function PokeListScreen() {
   };
 
   return (
-    // <Box className="p-4 bg-slate-800">
-    <Box className="p-4 ">
-      <Heading size="2xl">Pokedex</Heading>
-      <Input>
-        <InputField onChangeText={handleInputChange} placeholder="Enter Pokemon name..." />
+    <Box className="p-4">
+      <Heading className=" text-6xl text-typography-300">Pokedex</Heading>
+      <Text className=" text-xl text-typography-300">Gotta catch 'em all</Text>
+      <Text className=" text-lg text-typography-300 mt-10 mb-4">
+        Find your favorite pokemons and see their details.
+      </Text>
+      <Input size="xl" variant="rounded" className="mb-4">
+        <InputField onChangeText={handleInputChange} placeholder="Name or pokedex number..." />
       </Input>
       {isLoading && <Spinner size="large" color="#fff" />}
       {foundPokemon && <PokemonDetails pokemon={foundPokemon} />}
