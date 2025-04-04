@@ -8,7 +8,7 @@ import { Stat } from './Stat';
 import { VStack } from '@/components/ui/vstack';
 import { TypeBadge } from './TypeBadge';
 import { Divider } from '@/components/ui/divider';
-import { usePermsistVisitedPokemon } from '../modals';
+import { usePermsistVisitedPokemon } from '../adapters';
 import { useEffect } from 'react';
 
 interface PokemonDetailsProps {

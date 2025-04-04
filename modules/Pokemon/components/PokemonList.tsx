@@ -1,5 +1,5 @@
 import { Dimensions, FlatList } from 'react-native';
-import { useGetPokemonList, usePermsistVisitedPokemon } from '../modals';
+import { useGetPokemonList, usePermsistVisitedPokemon } from '../adapters';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
 import { Spinner } from '@/components/ui/spinner';

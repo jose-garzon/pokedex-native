@@ -3,7 +3,7 @@ import { Heading } from '@/components/ui/heading';
 import { Input, InputField } from '@/components/ui/input';
 import { PokemonList } from './components/PokemonList';
 import { useState } from 'react';
-import { useGetPokemon } from './modals';
+import { useGetPokemon } from './adapters';
 import useDebounce from '@/hooks/useDebounce';
 import { PokemonDetails } from './components/PokemonDetails';
 import { Spinner } from '@/components/ui/spinner';
