@@ -11,6 +11,8 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import '../global.css';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -49,15 +51,19 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <PersistQueryClientProvider
-      client={queryClient}
-      persistOptions={{ persister: asyncStoragePersister }}
-    >
-      <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
-        <ThemeProvider value={DarkTheme}>
-          <Slot />
-        </ThemeProvider>
-      </GluestackUIProvider>
-    </PersistQueryClientProvider>
+    <SafeAreaProvider>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{ persister: asyncStoragePersister }}
+      >
+        <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
+          <ThemeProvider value={DarkTheme}>
+            <Slot />
+          </ThemeProvider>
+        </GluestackUIProvider>
+      </PersistQueryClientProvider>
+      <StatusBar style={colorScheme === 'dark' ? 'dark' : 'light'} />
+    </SafeAreaProvider>
   );
 }
