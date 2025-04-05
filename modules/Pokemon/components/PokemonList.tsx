@@ -1,5 +1,5 @@
-import { Dimensions, FlatList, useWindowDimensions } from 'react-native';
-import { useGetPokemonList, usePermsistVisitedPokemon } from '../adapters';
+import { Dimensions, FlatList, Platform, useWindowDimensions } from 'react-native';
+import { useGetPokemonList, usePersistVisitedPokemon } from '../adapters';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
 import { Spinner } from '@/components/ui/spinner';
@@ -11,7 +11,7 @@ import { ErrorMessage } from './ErrorMessage';
 export function PokemonList() {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
-  const { checkIfVisited } = usePermsistVisitedPokemon();
+  const { checkIfVisited } = usePersistVisitedPokemon();
   const [itemHeight, setItemHeight] = useState<number>(118);
   const { width, height } = useWindowDimensions();
 
@@ -44,7 +44,7 @@ export function PokemonList() {
               className={`flex-1 aspect-square`}
               role="listitem"
               onLayout={event => {
-                if (item.id !== 1) return;
+                if (item.id !== 1 && Platform.OS === 'web') return;
                 const { height } = event.nativeEvent.layout;
                 setItemHeight(height);
               }}

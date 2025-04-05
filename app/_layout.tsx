@@ -48,22 +48,19 @@ const asyncStoragePersister = createAsyncStoragePersister({
   storage: AsyncStorage,
 });
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
     <SafeAreaProvider>
-      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style="light" />
       <PersistQueryClientProvider
         client={queryClient}
         persistOptions={{ persister: asyncStoragePersister }}
       >
-        <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
+        <GluestackUIProvider>
           <ThemeProvider value={DarkTheme}>
             <Slot />
           </ThemeProvider>
         </GluestackUIProvider>
       </PersistQueryClientProvider>
-      <StatusBar style={colorScheme === 'dark' ? 'dark' : 'light'} />
     </SafeAreaProvider>
   );
 }

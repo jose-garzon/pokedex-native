@@ -1,4 +1,6 @@
-export const bulbasaurMock = {
+import { PokeList, Pokemon } from '@/modules/Pokemon/types';
+
+export const bulbasaurMock: Pokemon = {
   id: 1,
   name: 'bulbasaur',
   artImage:
@@ -35,7 +37,7 @@ export const bulbasaurMock = {
   weight: 69,
   height: 70,
 };
-export const charmanderMock = {
+export const charmanderMock: Pokemon = {
   id: 4,
   name: 'charmander',
   artImage:
@@ -72,7 +74,7 @@ export const charmanderMock = {
   weight: 85,
   height: 60,
 };
-export const squirtleMock = {
+export const squirtleMock: Pokemon = {
   id: 7,
   name: 'squirtle',
   artImage:
@@ -110,14 +112,7 @@ export const squirtleMock = {
   height: 50,
 };
 
-export const pokemonListMock = {
-  data: [bulbasaurMock, charmanderMock, squirtleMock],
-  isLoading: false,
-  error: null,
-};
-
-export const pokemonListErrorMock = {
-  data: undefined,
-  isLoading: false,
-  error: { message: 'Not found' },
+export const pokemonListMock: PokeList = {
+  next: 3,
+  results: [bulbasaurMock, charmanderMock, squirtleMock],
 };

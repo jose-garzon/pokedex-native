@@ -8,7 +8,7 @@ import { Stat } from './Stat';
 import { VStack } from '@/components/ui/vstack';
 import { TypeBadge } from './TypeBadge';
 import { Divider } from '@/components/ui/divider';
-import { usePermsistVisitedPokemon } from '../adapters';
+import { usePersistVisitedPokemon } from '../adapters';
 import { useEffect } from 'react';
 
 interface PokemonDetailsProps {
@@ -16,7 +16,7 @@ interface PokemonDetailsProps {
 }
 
 export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
-  const { savePokemonVisited } = usePermsistVisitedPokemon();
+  const { savePokemonVisited } = usePersistVisitedPokemon();
   useEffect(() => {
     if (pokemon) {
       savePokemonVisited(pokemon.id);

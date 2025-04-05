@@ -37,7 +37,7 @@ export function useGetPokemon(name: string): {
   return { data, isLoading, error };
 }
 
-export function usePermsistVisitedPokemon(): {
+export function usePersistVisitedPokemon(): {
   savePokemonVisited: (id: number) => void;
   checkIfVisited: (id: number) => boolean;
 } {
