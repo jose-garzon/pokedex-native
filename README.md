@@ -1,36 +1,110 @@
-# Welcome to your Expo app 👋
+# Pokédex App
 
-This is an [Expo](https://expo.dev) project created with [`create-gluestack-app`](https://www.npmjs.com/package/create-gluestack).
+A React Native application that allows users to browse and search for Pokémon using the [PokéAPI](https://pokeapi.co/). Keep track on the Pokemons you have seen.
 
-## Get started
+Built with Expo, React Native, and Tailwind CSS.
 
-1. Start the app
+![Pokédex App](./assets/images/screens.png)
 
-   ```bash
-    npm run start
-   ```
+## Features
 
-In the output, you'll find options to open the app in a
+- Browse a list of Pokémon with infinite scrolling
+- Search for Pokémon by name or ID
+- View detailed information about each Pokémon
+- Responsive layout for different screen sizes
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Installation
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Follow these steps to set up the project locally:
 
-## Learn more
+```bash
+# Clone the repository
+git clone https://github.com/jose-garzon/pokedex-native
+cd pokedex-native
 
-To learn more about developing your project with Expo, look at the following resources:
+# Install dependencies
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-- [Nativewind](https://www.nativewind.dev/): Nativewind is a utility-first library for building native apps with Tailwind CSS.
-- [Gluestack](https://gluestack.io/): Gluestack is a component library for building native apps with Tailwind CSS.
+## Running the App
 
-## Join the community
+```bash
+# Start the development server
+npm run start
+```
 
-Join our community of developers creating universal apps.
+After running the start command, you'll see options to run the app on different platforms:
 
-- [gluestack-ui on GitHub](https://github.com/gluestack/gluestack-ui): View our open source ui library and contribute.
-- [gluestack community](https://discord.com/channels/1050761204852858900/1336392784168484914): Chat with gluestack users and ask questions.
+### Running on iOS
+
+```bash
+# Press 'i' after starting the development server, or run:
+npm run ios
+```
+
+### Running on Android
+
+```bash
+# Press 'a' after starting the development server, or run:
+npm run android
+```
+
+### Running on Web
+
+```bash
+# Press 'w' after starting the development server, or run:
+npm run web
+```
+
+### Expo Go
+
+You can also run the app on your physical device using the Expo Go app:
+
+1. Download Expo Go from the App Store or Google Play Store
+2. Scan the QR code displayed in the terminal after running `npm run start`
+
+## Testing
+
+The application includes unit tests using Jest and React Testing Library.
+
+```bash
+# Run all tests
+npm run test
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+## Project Structure
+
+The project follows a modular architecture to separate concerns and organize code effectively:
+
+### Modules Folder
+
+The `modules` folder contains the business logic and code for different entities of the application. Currently, the only module is `Pokemon`. This structure helps encapsulate the functionality of each entity.
+
+Each module typically includes:
+
+- `adapters.ts`: Custom hooks for data fetching and state management
+- `services.ts`: API service functions
+- `types.ts`: TypeScript interfaces and types
+- `components/`: UI components specific to the module
+- `*.screen.tsx`: Screen components that compose the UI
+
+### App Folder
+
+The `app` folder works solely as a router, handling navigation concerns. It uses Expo Router for file-based routing, keeping navigation logic separate from business logic.
+
+## Technologies Used
+
+- [Expo](https://expo.dev/) - React Native framework
+- [React Native](https://reactnative.dev/) - Mobile app framework
+- [Tailwind CSS](https://tailwindcss.com/) via [NativeWind](https://nativewind.dev/) - Styling
+- [React Query](https://tanstack.com/query) - Data fetching and caching
+- [Gluestack UI](https://gluestack.io/) - UI component library
+- [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Testing
+- [MSW](https://mswjs.io/) - API mocking for tests
+
+## License
+
+[MIT](LICENSE)
