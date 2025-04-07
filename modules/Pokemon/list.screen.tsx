@@ -12,6 +12,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { ErrorMessage } from './components/ErrorMessage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { RefreshButton } from './components/RefreshButton';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
@@ -30,7 +31,11 @@ export function PokeListScreen() {
           Find your favorite pokemons and see their details.
         </Text>
         <Input size="xl" variant="rounded" className="mb-4">
-          <InputField onChangeText={handleInputChange} placeholder="Name or pokedex number..." />
+          <InputField
+            value={search}
+            onChangeText={handleInputChange}
+            placeholder="Name or pokedex number..."
+          />
         </Input>
         {Boolean(error) && (
           <ErrorMessage
@@ -42,15 +47,16 @@ export function PokeListScreen() {
         {foundPokemon && (
           <Animated.View
             entering={FadeIn.duration(400)}
-            exiting={FadeOut.duration(300)}
+            exiting={FadeOut.duration(100)}
             style={{ width: '100%' }}
           >
             <PokemonDetails pokemon={foundPokemon} />
           </Animated.View>
         )}
-        {!search && !isLoading && !error && <PokemonList />}
+        {!debouncedSearch && !isLoading && !error && <PokemonList />}
       </Box>
       <StatusBar style="light" />
+      <RefreshButton onPress={() => setSearch('')} />
     </SafeAreaView>
   );
 }

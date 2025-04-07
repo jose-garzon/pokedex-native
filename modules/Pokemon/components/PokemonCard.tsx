@@ -58,7 +58,6 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      // style={styles.pressableContainer}
     >
       <Animated.View style={animatedStyles}>
         <Box
@@ -76,11 +75,3 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  pressableContainer: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-});
