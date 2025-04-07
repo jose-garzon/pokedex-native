@@ -1,118 +1,120 @@
-import { PokeList, Pokemon } from '@/modules/Pokemon/types';
+import { PokeListResponse, PokemonResponse } from '@/modules/Pokemon/types';
 
-export const bulbasaurMock: Pokemon = {
+export const bulbasaurMock: PokemonResponse = {
+  base_experience: 64,
+  height: 7,
   id: 1,
+  is_default: true,
+  location_area_encounters: 'https://pokeapi.co/api/v2/pokemon/1/encounters',
   name: 'bulbasaur',
-  artImage:
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-  baseImage: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-  experience: 64,
+  order: 1,
+  past_abilities: [],
+  past_types: [],
+  sprites: {
+    back_default:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
+    front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+    front_shiny:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
+    other: {
+      dream_world: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+      },
+      home: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png',
+      },
+      'official-artwork': {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+      },
+      showdown: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif',
+      },
+    },
+    versions: {
+      'generation-vi': {
+        'omegaruby-alphasapphire': {
+          front_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/omegaruby-alphasapphire/1.png',
+        },
+      },
+    },
+  },
   stats: [
     {
-      name: 'hp',
-      value: 45,
+      base_stat: 45,
+      effort: 0,
+      stat: {
+        name: 'hp',
+        url: 'https://pokeapi.co/api/v2/stat/1/',
+      },
     },
     {
-      name: 'attack',
-      value: 49,
+      base_stat: 49,
+      effort: 0,
+      stat: {
+        name: 'attack',
+        url: 'https://pokeapi.co/api/v2/stat/2/',
+      },
     },
     {
-      name: 'defense',
-      value: 49,
+      base_stat: 49,
+      effort: 0,
+      stat: {
+        name: 'defense',
+        url: 'https://pokeapi.co/api/v2/stat/3/',
+      },
     },
     {
-      name: 'special-attack',
-      value: 65,
+      base_stat: 65,
+      effort: 1,
+      stat: {
+        name: 'special-attack',
+        url: 'https://pokeapi.co/api/v2/stat/4/',
+      },
     },
     {
-      name: 'special-defense',
-      value: 65,
+      base_stat: 65,
+      effort: 0,
+      stat: {
+        name: 'special-defense',
+        url: 'https://pokeapi.co/api/v2/stat/5/',
+      },
     },
     {
-      name: 'speed',
-      value: 45,
+      base_stat: 45,
+      effort: 0,
+      stat: {
+        name: 'speed',
+        url: 'https://pokeapi.co/api/v2/stat/6/',
+      },
     },
   ],
-  types: ['grass', 'poison'],
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: 'grass',
+        url: 'https://pokeapi.co/api/v2/type/12/',
+      },
+    },
+    {
+      slot: 2,
+      type: {
+        name: 'poison',
+        url: 'https://pokeapi.co/api/v2/type/4/',
+      },
+    },
+  ],
   weight: 69,
-  height: 70,
-};
-export const charmanderMock: Pokemon = {
-  id: 4,
-  name: 'charmander',
-  artImage:
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png',
-  baseImage: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-  experience: 62,
-  stats: [
-    {
-      name: 'hp',
-      value: 39,
-    },
-    {
-      name: 'attack',
-      value: 52,
-    },
-    {
-      name: 'defense',
-      value: 43,
-    },
-    {
-      name: 'special-attack',
-      value: 60,
-    },
-    {
-      name: 'special-defense',
-      value: 50,
-    },
-    {
-      name: 'speed',
-      value: 65,
-    },
-  ],
-  types: ['fire'],
-  weight: 85,
-  height: 60,
-};
-export const squirtleMock: Pokemon = {
-  id: 7,
-  name: 'squirtle',
-  artImage:
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png',
-  baseImage: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
-  experience: 63,
-  stats: [
-    {
-      name: 'hp',
-      value: 44,
-    },
-    {
-      name: 'attack',
-      value: 48,
-    },
-    {
-      name: 'defense',
-      value: 65,
-    },
-    {
-      name: 'special-attack',
-      value: 50,
-    },
-    {
-      name: 'special-defense',
-      value: 64,
-    },
-    {
-      name: 'speed',
-      value: 43,
-    },
-  ],
-  types: ['water'],
-  weight: 90,
-  height: 50,
 };
 
-export const pokemonListMock: PokeList = {
-  next: 3,
-  results: [bulbasaurMock, charmanderMock, squirtleMock],
+export const pokemonListMock: PokeListResponse = {
+  count: 1302,
+  next: null,
+  previous: null,
+  results: [{ name: bulbasaurMock.name as string, url: 'https://pokeapi.co/api/v2/pokemon/1/' }],
 };

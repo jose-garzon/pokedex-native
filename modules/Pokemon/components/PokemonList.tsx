@@ -28,7 +28,6 @@ export function PokemonList() {
       getNextPage();
     }
   }, [pokeList]);
-
   return (
     <>
       {Boolean(error) ? (

@@ -44,8 +44,8 @@ export interface Pokemon {
 
 export interface PokeListResponse {
   count: number;
-  next: string;
-  previous: string;
+  next: string | null;
+  previous: string | null;
   results: { name: string; url: string }[];
 }
 

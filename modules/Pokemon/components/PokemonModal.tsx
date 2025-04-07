@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/actionsheet';
 import { ActionsheetDragIndicator } from '@/components/ui/select/select-actionsheet';
 import { PokemonDetails } from './PokemonDetails';
+import { Button, ButtonText } from '@/components/ui/button';
 
 interface ScreenProps {
   pokemon: Pokemon | null;
@@ -23,6 +24,9 @@ export function PokemonModal({ pokemon, isOpen, onClose }: ScreenProps) {
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <PokemonDetails pokemon={pokemon} />
+        <Button onPress={onClose} variant="outline" className="w-full mt-4">
+          <ButtonText>Close</ButtonText>
+        </Button>
       </ActionsheetContent>
     </Actionsheet>
   );

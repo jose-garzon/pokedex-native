@@ -54,11 +54,11 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
 
   return (
     <Pressable
-      className="p-1"
+      className="p-1 flex-1 w-full h-full"
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      style={styles.pressableContainer}
+      // style={styles.pressableContainer}
     >
       <Animated.View style={animatedStyles}>
         <Box

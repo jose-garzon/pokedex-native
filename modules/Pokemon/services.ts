@@ -1,12 +1,9 @@
 import { PokeList, PokeListResponse, Pokemon, PokemonResponse } from './types';
 
-const PAGE_LIMIT = 36;
+const PAGE_LIMIT = 24;
 
 export async function fetchPokemon(name: string): Promise<Pokemon> {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch Pokemon');
-  }
   const data = (await response.json()) as PokemonResponse;
   return {
     id: data.id,
@@ -27,9 +24,6 @@ export async function fetchPokemon(name: string): Promise<Pokemon> {
 export async function fetchPokeList(offset: number): Promise<PokeList> {
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${PAGE_LIMIT}&offset=${offset}`;
   const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Failed to fetch Pokemon list');
-  }
   const data = (await response.json()) as PokeListResponse;
   const nextOffset = data.next ? Number(new URL(data.next).searchParams.get('offset')) : null;
   const results = data.results;

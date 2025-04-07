@@ -13,6 +13,7 @@ export function useGetPokemonList(): {
     queryFn: ({ pageParam }) => fetchPokeList(pageParam),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.next,
+    retry: 0,
   });
 
   async function getNextPage() {
@@ -33,6 +34,7 @@ export function useGetPokemon(name: string): {
     queryKey: ['pokemon', name],
     queryFn: () => fetchPokemon(name),
     enabled: Boolean(name),
+    retry: 0,
   });
   return { data, isLoading, error };
 }
