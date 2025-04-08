@@ -1,3 +1,5 @@
+import { Pokemon } from '../types';
+
 export function getTypeColor(type: string): { background: string; color: string } {
   const typeColors: Record<string, { background: string; color: string }> = {
     normal: { background: '#A8A090', color: 'white' },
@@ -21,4 +23,14 @@ export function getTypeColor(type: string): { background: string; color: string 
   };
 
   return typeColors[type] || typeColors.normal;
+}
+
+export function addEmptyItemsToList(pokeList: Pokemon[], columnCount: number): Pokemon[] {
+  const numberOfElementsLastRow = (pokeList?.length ?? 0) % columnCount;
+  const emptyMissing = columnCount - numberOfElementsLastRow;
+  return [...(pokeList ?? []), ...Array(emptyMissing).fill(null)];
+}
+
+export function searchPokemon(pokeList: Pokemon[], search: string): Pokemon[] {
+  return pokeList.filter(pokemon => pokemon?.name?.toLowerCase().startsWith(search.toLowerCase()));
 }

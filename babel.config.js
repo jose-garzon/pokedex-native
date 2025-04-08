@@ -17,13 +17,14 @@ module.exports = function (api) {
         'module-resolver',
         {
           root: ['./'],
-
+          extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.png'],
           alias: {
             '@': './',
             'tailwind.config': './tailwind.config.js',
           },
         },
       ],
+      'react-native-reanimated/plugin',
     ],
   };
 };

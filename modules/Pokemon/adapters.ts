@@ -25,20 +25,6 @@ export function useGetPokemonList(): {
   return { data: pokemons, isLoading: isFetching, error, getNextPage };
 }
 
-export function useGetPokemon(name: string): {
-  data: Pokemon | undefined;
-  isLoading: boolean;
-  error: unknown;
-} {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['pokemon', name],
-    queryFn: () => fetchPokemon(name),
-    enabled: Boolean(name),
-    retry: 0,
-  });
-  return { data, isLoading, error };
-}
-
 export function usePersistVisitedPokemon(): {
   savePokemonVisited: (id: number) => void;
   checkIfVisited: (id: number) => boolean;

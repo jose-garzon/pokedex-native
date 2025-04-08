@@ -16,7 +16,4 @@ export const errorHandlers = [
   http.get(baseUrl, () => {
     return HttpResponse.json({ message: 'Failed to fetch Pokemon list' }, { status: 500 });
   }),
-  http.get(`${baseUrl}/${bulbasaurMock.name}`, () => {
-    return HttpResponse.json({ message: 'not found' }, { status: 404 });
-  }),
 ];

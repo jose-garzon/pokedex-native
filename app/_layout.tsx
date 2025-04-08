@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { useColorScheme } from '@/components/useColorScheme';
 import { Slot } from 'expo-router';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
@@ -45,10 +44,9 @@ const queryClient = new QueryClient({
   },
 });
 const asyncStoragePersister = createAsyncStoragePersister({
-  // storage: AsyncStorage,
-  storage: null,
+  storage: AsyncStorage,
 });
-// AsyncStorage.clear();
+
 function RootLayoutNav() {
   return (
     <SafeAreaProvider>

@@ -3,21 +3,13 @@ import { Heading } from '@/components/ui/heading';
 import { Input, InputField } from '@/components/ui/input';
 import { PokemonList } from './components/PokemonList';
 import { useState } from 'react';
-import { useGetPokemon } from './adapters';
-import useDebounce from '@/hooks/useDebounce';
-import { PokemonDetails } from './components/PokemonDetails';
-import { Spinner } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { ErrorMessage } from './components/ErrorMessage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { RefreshButton } from './components/RefreshButton';
 
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search);
-  const { data: foundPokemon, isLoading, error } = useGetPokemon(debouncedSearch);
   const handleInputChange = (text: string) => {
     setSearch(text);
   };
@@ -34,10 +26,10 @@ export function PokeListScreen() {
           <InputField
             value={search}
             onChangeText={handleInputChange}
-            placeholder="Name or pokedex number..."
+            placeholder="Name of the pokemon..."
           />
         </Input>
-        <PokemonList />
+        <PokemonList search={search} />
       </Box>
       <StatusBar style="light" />
       <RefreshButton onPress={() => setSearch('')} />
