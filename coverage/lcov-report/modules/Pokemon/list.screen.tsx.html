@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
@@ -101,25 +101,7 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,19 +112,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,18 +135,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,20 +144,13 @@ import { Heading } from '@/components/ui/heading';
 import { Input, InputField } from '@/components/ui/input';
 import { PokemonList } from './components/PokemonList';
 import { useState } from 'react';
-import { useGetPokemon } from './adapters';
-import useDebounce from '@/hooks/useDebounce';
-import { PokemonDetails } from './components/PokemonDetails';
-import { Spinner } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { ErrorMessage } from './components/ErrorMessage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { RefreshButton } from './components/RefreshButton';
 &nbsp;
 export function PokeListScreen() {
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search);
-  const { data: foundPokemon, isLoading, error } = useGetPokemon(debouncedSearch);
   const handleInputChange = (text: string) =&gt; {
     setSearch(text);
   };
@@ -207,27 +164,16 @@ export function PokeListScreen() {
           Find your favorite pokemons and see their details.
         &lt;/Text&gt;
         &lt;Input size="xl" variant="rounded" className="mb-4"&gt;
-          &lt;InputField onChangeText={handleInputChange} placeholder="Name or pokedex number..." /&gt;
-        &lt;/Input&gt;
-        {Boolean(error) &amp;&amp; (
-          &lt;ErrorMessage
-            title="Pokemon not found"
-            message="Change the name or pokedex number and try again."
+          &lt;InputField
+            value={search}
+            onChangeText={handleInputChange}
+            placeholder="Pokemon's name..."
           /&gt;
-        )}
-        {isLoading &amp;&amp; &lt;Spinner size="large" color="white" /&gt;}
-        {foundPokemon &amp;&amp; (
-          &lt;Animated.View
-            entering={FadeIn.duration(400)}
-            exiting={FadeOut.duration(300)}
-            style={{ width: '100%' }}
-          &gt;
-            &lt;PokemonDetails pokemon={foundPokemon} /&gt;
-          &lt;/Animated.View&gt;
-        )}
-        {!search &amp;&amp; !isLoading &amp;&amp; !error &amp;&amp; &lt;PokemonList /&gt;}
+        &lt;/Input&gt;
+        &lt;PokemonList search={search} /&gt;
       &lt;/Box&gt;
       &lt;StatusBar style="light" /&gt;
+      &lt;RefreshButton onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setSearch('')}</span> /&gt;
     &lt;/SafeAreaView&gt;
   );
 }
@@ -238,7 +184,7 @@ export function PokeListScreen() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-07T17:18:02.770Z
+                at 2025-04-08T22:41:34.235Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -26,7 +26,7 @@ export function PokeListScreen() {
           <InputField
             value={search}
             onChangeText={handleInputChange}
-            placeholder="Name of the pokemon..."
+            placeholder="Pokemon's name..."
           />
         </Input>
         <PokemonList search={search} />

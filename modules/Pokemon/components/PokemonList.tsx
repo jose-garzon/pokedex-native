@@ -20,7 +20,6 @@ export function PokemonList({ search }: PokemonListProps) {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
   const { checkIfVisited } = usePersistVisitedPokemon();
-  console.log({ isLoading });
 
   const [itemHeight, setItemHeight] = useState<number>(118);
   const { numCols, minItemsToShowInScreen } = useGetGridDimensions(itemHeight);
@@ -48,13 +47,14 @@ export function PokemonList({ search }: PokemonListProps) {
           role="list"
           className="mt-5"
           keyExtractor={item => item?.id?.toString() ?? 'empty'}
-          renderItem={({ item }) =>
+          renderItem={({ item, index }) =>
             item === null ? (
-              <LoadingCard isLoading={isLoading} />
+              <LoadingCard key={`empty-${index}`} isLoading={isLoading} />
             ) : (
               <Box
                 className={`flex-1 aspect-square`}
                 role="listitem"
+                key={item.id}
                 onLayout={event => {
                   if (item.id !== 1) return;
                   const { height } = event.nativeEvent.layout;
@@ -62,7 +62,6 @@ export function PokemonList({ search }: PokemonListProps) {
                 }}
               >
                 <PokemonCard
-                  key={item.id.toString()}
                   pokemon={item}
                   onPress={() => setShowPokemon(item)}
                   visited={checkIfVisited(item.id)}

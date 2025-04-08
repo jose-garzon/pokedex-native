@@ -50,7 +50,6 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
       width: '100%',
     };
   });
-
   return (
     <Pressable
       className="p-1 flex-1 w-full h-full"
@@ -63,12 +62,14 @@ export function PokemonCard({ pokemon, onPress, visited }: PokemonCardProps) {
           aria-label={`${pokemon.name} card`}
           className={`p-2 h-full w-full aspect-square justify-between rounded-md ${visited ? 'bg-neutral-50' : 'bg-neutral-700'}`}
         >
-          <Image
-            source={{ uri: pokemon.baseImage }}
-            aria-selected={visited}
-            alt={pokemon.name}
-            className="aspect-square w-full h-full object-contain"
-          />
+          {pokemon.baseImage && (
+            <Image
+              source={{ uri: pokemon.baseImage }}
+              aria-selected={visited}
+              alt={pokemon.name}
+              className="aspect-square w-full h-full object-contain"
+            />
+          )}
         </Box>
       </Animated.View>
     </Pressable>

@@ -112,9 +112,115 @@ export const bulbasaurMock: PokemonResponse = {
   weight: 69,
 };
 
+export const charmanderMock: PokemonResponse = {
+  id: 4,
+  base_experience: 64,
+  height: 6,
+  is_default: true,
+  location_area_encounters: 'https://pokeapi.co/api/v2/pokemon/4/encounters',
+  name: 'charmander',
+  order: 1,
+  past_abilities: [],
+  past_types: [],
+  sprites: {
+    back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png',
+    front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
+    front_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/4.png',
+    other: {
+      'official-artwork': {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png',
+      },
+      home: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/home/4.png',
+      },
+      dream_world: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/dream-world/4.png',
+      },
+      showdown: {
+        front_default:
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/showdown/4.png',
+      },
+    },
+    versions: {
+      'generation-vi': {
+        'omegaruby-alphasapphire': {
+          front_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/omegaruby-alphasapphire/4.png',
+        },
+      },
+    },
+  },
+  stats: [
+    {
+      base_stat: 39,
+      effort: 0,
+      stat: {
+        name: 'hp',
+        url: 'https://pokeapi.co/api/v2/stat/1/',
+      },
+    },
+    {
+      base_stat: 52,
+      effort: 0,
+      stat: {
+        name: 'attack',
+        url: 'https://pokeapi.co/api/v2/stat/2/',
+      },
+    },
+    {
+      base_stat: 43,
+      effort: 0,
+      stat: {
+        name: 'defense',
+        url: 'https://pokeapi.co/api/v2/stat/3/',
+      },
+    },
+    {
+      base_stat: 60,
+      effort: 1,
+      stat: {
+        name: 'special-attack',
+        url: 'https://pokeapi.co/api/v2/stat/4/',
+      },
+    },
+    {
+      base_stat: 50,
+      effort: 0,
+      stat: {
+        name: 'special-defense',
+        url: 'https://pokeapi.co/api/v2/stat/5/',
+      },
+    },
+    {
+      base_stat: 60,
+      effort: 0,
+      stat: {
+        name: 'speed',
+        url: 'https://pokeapi.co/api/v2/stat/6/',
+      },
+    },
+  ],
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: 'fire',
+        url: 'https://pokeapi.co/api/v2/type/10/',
+      },
+    },
+  ],
+  weight: 9,
+};
+
 export const pokemonListMock: PokeListResponse = {
   count: 1302,
   next: null,
   previous: null,
-  results: [{ name: bulbasaurMock.name as string, url: 'https://pokeapi.co/api/v2/pokemon/1/' }],
+  results: [
+    { name: bulbasaurMock.name as string, url: 'https://pokeapi.co/api/v2/pokemon/1/' },
+    { name: charmanderMock.name as string, url: 'https://pokeapi.co/api/v2/pokemon/4/' },
+  ],
 };

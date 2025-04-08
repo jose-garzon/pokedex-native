@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for modules/Pokemon/components/utils.ts</title>
+    <title>Code coverage report for modules/Pokemon/components/LoadingCard.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">modules/Pokemon/components</a> utils.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">modules/Pokemon/components</a> LoadingCard.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -99,16 +99,14 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,53 +121,76 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-yes">50x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">100x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Pokemon } from '../types';
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13835x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">355x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Box } from '@/components/ui/box';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
+import { useEffect } from 'react';
 &nbsp;
-export function getTypeColor(type: string): { background: string; color: string } {
-  const typeColors: Record&lt;string, { background: string; color: string }&gt; = {
-    normal: { background: '#A8A090', color: 'white' },
-    fighting: { background: '#A05038', color: 'white' },
-    flying: { background: '#98A8F0', color: 'black' },
-    poison: { background: '#B058A0', color: 'white' },
-    ground: { background: '#E9D6A4', color: 'black' },
-    rock: { background: '#B8A058', color: 'white' },
-    bug: { background: '#A8B820', color: 'black' },
-    ghost: { background: '#6060B0', color: 'white' },
-    steel: { background: '#A8A8C0', color: 'black' },
-    fire: { background: '#F05030', color: 'white' },
-    water: { background: '#3899F8', color: 'black' },
-    grass: { background: '#78C850', color: 'black' },
-    electric: { background: '#F8D030', color: 'black' },
-    psychic: { background: '#F870A0', color: 'black' },
-    ice: { background: '#58C8E0', color: 'white' },
-    dragon: { background: '#7860E0', color: 'white' },
-    dark: { background: '#7A5848', color: 'white' },
-    fairy: { background: '#E79FE7', color: 'white' },
-  };
-&nbsp;
-  return typeColors[type] || typeColors.normal;
+interface LoadingCardProps {
+  isLoading: boolean;
+  count?: number;
 }
 &nbsp;
-export function addEmptyItemsToList(pokeList: Pokemon[], columnCount: number): Pokemon[] {
-  const numberOfElementsLastRow = (pokeList?.length ?? <span class="branch-1 cbranch-no" title="branch not covered" >0)</span> % columnCount;
-  const emptyMissing = columnCount - numberOfElementsLastRow;
-  return [...(pokeList ?? <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>, ...Array(emptyMissing).fill(null)];
-}
+export function LoadingCard({ isLoading, count = 1 }: LoadingCardProps) {
+  const shineOpacity = useSharedValue(0);
 &nbsp;
-export function searchPokemon(pokeList: Pokemon[], search: string): Pokemon[] {
-  return pokeList.filter(pokemon =&gt; pokemon?.name?.toLowerCase().startsWith(search.toLowerCase()));
+  useEffect(() =&gt; {
+    if (isLoading) {
+      shineOpacity.value = withRepeat(
+        withTiming(0.8, {
+          duration: 1000,
+        }),
+        -1,
+        true
+      );
+    } else {
+      shineOpacity.value = 0;
+    }
+  }, [isLoading]);
+&nbsp;
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    opacity: shineOpacity.value,
+  }));
+&nbsp;
+  return Array.from({ length: count }).map((_, index) =&gt; (
+    &lt;Box key={index} className="flex-1 aspect-square"&gt;
+      &lt;Box className="flex-1 w-full h-full p-1"&gt;
+        &lt;Animated.View className="w-full h-full rounded-md bg-neutral-700" style={animatedStyle} /&gt;
+      &lt;/Box&gt;
+    &lt;/Box&gt;
+  ));
 }
 &nbsp;</pre></td></tr></table></pre>
 
