@@ -20,6 +20,7 @@ export function PokemonList({ search }: PokemonListProps) {
   const [showPokemon, setShowPokemon] = useState<Pokemon | null>(null);
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
   const { checkIfVisited } = usePersistVisitedPokemon();
+  console.log({ isLoading });
 
   const [itemHeight, setItemHeight] = useState<number>(118);
   const { numCols, minItemsToShowInScreen } = useGetGridDimensions(itemHeight);
@@ -36,9 +37,10 @@ export function PokemonList({ search }: PokemonListProps) {
   if (error) {
     return <ErrorMessage title="Something went wrong" message="Please try again later." />;
   }
+
   return (
     <>
-      {searchedList.length === 0 && !isLoading ? (
+      {pokeList && searchedList.length === 0 && !isLoading ? (
         <EmptyMessage />
       ) : (
         <FlatList
@@ -69,7 +71,7 @@ export function PokemonList({ search }: PokemonListProps) {
             )
           }
           onEndReached={getNextPage}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0.2}
           ListFooterComponent={
             isLoading ? (
               <HStack className="flex-1 w-full">

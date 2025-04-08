@@ -1,6 +1,7 @@
-import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchPokeList, fetchPokemon } from './services';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { fetchPokeList } from './services';
 import { Pokemon } from './types';
+import { useDebounceLoading } from '@/hooks/useDebounceLoading';
 
 export function useGetPokemonList(): {
   data: Pokemon[] | undefined;
@@ -21,8 +22,9 @@ export function useGetPokemonList(): {
       await fetchNextPage();
     }
   }
-  const pokemons = data?.pages.flatMap(page => page.results) ?? [];
-  return { data: pokemons, isLoading: isFetching, error, getNextPage };
+  const debouncedLoading = useDebounceLoading(isFetching, 2000);
+  const pokemons = data?.pages.flatMap(page => page.results);
+  return { data: pokemons, isLoading: debouncedLoading, error, getNextPage };
 }
 
 export function usePersistVisitedPokemon(): {

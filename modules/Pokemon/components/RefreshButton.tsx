@@ -1,4 +1,4 @@
-import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
+import { Fab, FabLabel } from '@/components/ui/fab';
 
 interface RefreshButtonProps {
   onPress: () => void;

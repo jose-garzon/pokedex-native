@@ -19,7 +19,7 @@ export function PokemonModal({ pokemon, isOpen, onClose }: ScreenProps) {
   return (
     <Actionsheet isOpen={isOpen} onClose={onClose}>
       <ActionsheetBackdrop />
-      <ActionsheetContent>
+      <ActionsheetContent className="md:w-2/3 lg:w-1/2 md:mx-auto lg:mx-auto">
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
