@@ -37,23 +37,7 @@ export function PokeListScreen() {
             placeholder="Name or pokedex number..."
           />
         </Input>
-        {Boolean(error) && (
-          <ErrorMessage
-            title="Pokemon not found"
-            message="Change the name or pokedex number and try again."
-          />
-        )}
-        {isLoading && <Spinner size="large" color="white" />}
-        {foundPokemon && (
-          <Animated.View
-            entering={FadeIn.duration(400)}
-            exiting={FadeOut.duration(100)}
-            style={{ width: '100%' }}
-          >
-            <PokemonDetails pokemon={foundPokemon} />
-          </Animated.View>
-        )}
-        {!debouncedSearch && !isLoading && !error && <PokemonList />}
+        <PokemonList />
       </Box>
       <StatusBar style="light" />
       <RefreshButton onPress={() => setSearch('')} />

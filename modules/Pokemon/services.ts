@@ -1,6 +1,6 @@
 import { PokeList, PokeListResponse, Pokemon, PokemonResponse } from './types';
 
-const PAGE_LIMIT = 24;
+const PAGE_LIMIT = 5;
 
 export async function fetchPokemon(name: string): Promise<Pokemon> {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);

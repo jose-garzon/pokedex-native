@@ -45,8 +45,10 @@ const queryClient = new QueryClient({
   },
 });
 const asyncStoragePersister = createAsyncStoragePersister({
-  storage: AsyncStorage,
+  // storage: AsyncStorage,
+  storage: null,
 });
+// AsyncStorage.clear();
 function RootLayoutNav() {
   return (
     <SafeAreaProvider>

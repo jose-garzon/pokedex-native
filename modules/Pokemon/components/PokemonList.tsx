@@ -1,9 +1,9 @@
-import { Dimensions, FlatList, Platform, useWindowDimensions } from 'react-native';
+import { FlatList, Platform, useWindowDimensions } from 'react-native';
 import { useGetPokemonList, usePersistVisitedPokemon } from '../adapters';
 import { PokemonCard } from './PokemonCard';
 import { Box } from '@/components/ui/box';
 import { Spinner } from '@/components/ui/spinner';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pokemon } from '../types';
 import { PokemonModal } from './PokemonModal';
 import { ErrorMessage } from './ErrorMessage';
@@ -13,18 +13,12 @@ export function PokemonList() {
   const { data: pokeList, isLoading, error, getNextPage } = useGetPokemonList();
   const { checkIfVisited } = usePersistVisitedPokemon();
   const [itemHeight, setItemHeight] = useState<number>(118);
-  const { width, height } = useWindowDimensions();
+  const { numCols, minItemsToShowInScreen } = useGetGridDimensions(itemHeight);
+  const parsedList = addEmptyItems(pokeList ?? [], numCols);
 
-  const columnCount = useMemo(() => {
-    if (width >= 1024) return 6;
-    if (width >= 768) return 4;
-    return 3;
-  }, [width]);
-
-  const minItemsToShow = Math.ceil(height / itemHeight);
   useEffect(() => {
     const listLength = pokeList?.length ?? 0;
-    if (listLength < minItemsToShow) {
+    if (listLength < minItemsToShowInScreen) {
       getNextPage();
     }
   }, [pokeList]);
@@ -34,29 +28,33 @@ export function PokemonList() {
         <ErrorMessage title="Something went wrong" message="Please try again later." />
       ) : (
         <FlatList
-          data={pokeList}
+          data={parsedList}
           role="list"
           className="mt-5"
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => (
-            <Box
-              className={`flex-1 aspect-square`}
-              role="listitem"
-              onLayout={event => {
-                if (item.id !== 1 && Platform.OS === 'web') return;
-                const { height } = event.nativeEvent.layout;
-                setItemHeight(height);
-              }}
-            >
-              <PokemonCard
-                key={item.id.toString()}
-                pokemon={item}
-                onPress={() => setShowPokemon(item)}
-                visited={checkIfVisited(item.id)}
-              />
-            </Box>
-          )}
-          onEndReached={getNextPage}
+          keyExtractor={item => item?.id?.toString() ?? 'empty'}
+          renderItem={({ item }) =>
+            item === null ? (
+              <Box className="flex-1 aspect-square opacity-0" />
+            ) : (
+              <Box
+                className={`flex-1 aspect-square`}
+                role="listitem"
+                onLayout={event => {
+                  if (item.id !== 1 && Platform.OS === 'web') return;
+                  const { height } = event.nativeEvent.layout;
+                  setItemHeight(height);
+                }}
+              >
+                <PokemonCard
+                  key={item.id.toString()}
+                  pokemon={item}
+                  onPress={() => setShowPokemon(item)}
+                  visited={checkIfVisited(item.id)}
+                />
+              </Box>
+            )
+          }
+          // onEndReached={getNextPage}
           onEndReachedThreshold={1}
           ListFooterComponent={
             isLoading ? (
@@ -65,7 +63,8 @@ export function PokemonList() {
               </Box>
             ) : null
           }
-          numColumns={columnCount}
+          key={numCols}
+          numColumns={numCols}
         />
       )}
       <PokemonModal
@@ -75,4 +74,27 @@ export function PokemonList() {
       />
     </>
   );
+}
+
+function useGetGridDimensions(itemHeight: number): {
+  numCols: number;
+  minItemsToShowInScreen: number;
+} {
+  const [numCols, setNumCols] = useState(3);
+  const { width, height } = useWindowDimensions();
+
+  const minItemsToShowInScreen = Math.ceil(height / itemHeight) * numCols;
+
+  useEffect(() => {
+    if (width < 768) setNumCols(3);
+    if (width >= 1024) setNumCols(6);
+    if (width >= 768) setNumCols(4);
+  }, [width]);
+  return { numCols, minItemsToShowInScreen };
+}
+
+function addEmptyItems(pokeList: Pokemon[], columnCount: number): Pokemon[] {
+  const numberOfElementsLastRow = (pokeList?.length ?? 0) % columnCount;
+  const emptyMissing = columnCount - numberOfElementsLastRow;
+  return [...(pokeList ?? []), ...Array(emptyMissing).fill(null)];
 }
